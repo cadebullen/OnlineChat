@@ -1,0 +1,17 @@
+body{
+    background-image: url("chatBackground.jpg");
+    background-size: cover;
+    color: black;
+}
+h1{
+    text-align: center;
+    text-decoration: overline underline;
+}
+table{
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Courier New', Courier, monospace;
+}
+form{
+    text-align: center;
+}

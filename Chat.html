@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <title> Chat Application </title>
+        <link rel='stylesheet' href='chat.css'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script> 
+            $(document).ready(function(){
+                $('#message').keyup(() =>{
+                    $.post({
+                        type: "post",
+                        url: "ChatInput.php",
+                        data: {
+                            name: $("#name").val(),
+                            password: $("#password").val(),
+                            message: $("#message").val()
+                        },
+                        dataType: "json"
+                    })
+                    .done(response =>{
+                        var feedback = $("#feedback");
+                        if (feedback == 1){
+                            feedback.text('Sent!');
+                        }
+                        else{
+                            feedback.text('Invalid Credentials! Please try again.');
+                        }
+                    });
+                });
+
+                setInterval(() =>{
+                    $.ajax({
+                        type: "get",
+                        url: "ChatDisplay.php",
+                        data:{
+                            contactName: $("#contactName").val()
+                        },
+                        dataType: "json"
+                    })
+                    .done(response =>{
+                        var contactMsg = $('#contactMsg');
+                        if (response !== ''){
+                            contactMsg.text(response);
+                        }   
+                    });
+                }, 1000);
+            });
+        </script>
+    </head>
+    <body>
+        <h1> - Chat Application - </h1>
+        <table>
+            <th> Contacts: </th>
+                <tr>
+                    <td> Justin </td>
+                </tr>
+                <tr>
+                    <td> Kayla </td>
+                </tr>
+        </table>
+        <br>
+        <br>
+
+        <form>
+            <label for='name'>Enter your name: </label>
+            <input type='text' id='name' name='name' placeholder='Ex: Jack'>
+                <br>
+            <label for='password'>Enter your password: </label>
+            <input type='password' id='password' name='password' placeholder='Ex: 111'>
+                <br>
+            <textarea name='message' id ='message' placeholder='Enter your message here....'></textarea>
+                <span id='feedback'></span>
+        </form>
+
+        <form>
+            <label for='contactName'> Enter Contact Name: </label>
+            <input type='text' id='contactName' name='contactName' placeholder='Ex: Jack'>
+                <br>
+            <textarea id='contactMsg' placeholder="Message logs will appear here..."></textarea>
+        </form>
+    </body>
+</html>
