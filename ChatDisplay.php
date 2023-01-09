@@ -1,8 +1,8 @@
 <?php
-    $servername = "sql1.njit.edu";
-    $username = "cbb23";
-    $password = "Titiforever21..";
-    $dbname = "cbb23";
+    $servername = "";
+    $username = "";
+    $password = "";
+    $dbname = "";
     $con = mysqli_connect($servername, $username, $password, $dbname);
               
     if (mysqli_connect_errno()){
