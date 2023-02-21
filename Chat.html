@@ -49,33 +49,51 @@
     <body>
         <h1> - Chat Application - </h1>
         <table>
-            <th> Contacts: </th>
+            <th> Contacts Available: </th>
                 <tr>
-                    <td> Justin </td>
+                    <td> <span class="logged-in">●</span> Justin </td>
                 </tr>
                 <tr>
-                    <td> Kayla </td>
+                    <td> <span class="logged-in">●</span> Kayla </td>
                 </tr>
         </table>
         <br>
-        <br>
 
-        <form>
-            <label for='name'>Enter your name: </label>
-            <input type='text' id='name' name='name' placeholder='Ex: Jack'>
-                <br>
-            <label for='password'>Enter your password: </label>
-            <input type='password' id='password' name='password' placeholder='Ex: 111'>
-                <br>
-            <textarea name='message' id ='message' placeholder='Enter your message here....'></textarea>
-                <span id='feedback'></span>
-        </form>
+            <form class="container">
+                <div class="flex-c1">
+                    <p> To create a new contact, type here: </p>
+                    <label for="newContact"> Enter new Contact: </label>
+                    <input type="text" id="newContact" placeholder="Ex: Mandy">
+                        <br>
+                    <label for="newPassword"> Password:</label>
+                    <input type="text" id="newPassword" placeholder="Ex: 323" maxlength="3" pattern="\d*"> <small style="color: red; display: inline-block;"> Password has to be a 3 digit number.</small>
+                </div>
 
-        <form>
-            <label for='contactName'> Enter Contact Name: </label>
-            <input type='text' id='contactName' name='contactName' placeholder='Ex: Jack'>
                 <br>
-            <textarea id='contactMsg' placeholder="Message logs will appear here..."></textarea>
-        </form>
+                <br>
+
+                <div class="flex-c2">
+                    <p> To send a message, type here:</p>
+                    <label for='name'>Enter your name: </label>
+                    <input type='text' id='name' name='name' placeholder='Ex: Jack'>
+                        <br>
+                    <label for='password'>Enter your password: </label>
+                    <input type='password' id='password' name='password' placeholder='Ex: 111' styke="display:inline-block;">
+                        <br>
+                    <label for="message">Enter your message to be sent here:</label>
+                    <textarea name='message' id ='message' placeholder='Enter your message here....'></textarea>
+                        <span id='feedback'></span>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="flex-c3">
+                    <label for='contactName'> To view a message enter a contact name: </label>
+                    <input type='text' id='contactName' name='contactName' placeholder='Ex: Jack'>
+                        <br>
+                    <textarea id='contactMsg' placeholder="Message logs will appear here..."></textarea>
+                </div>
+            </form>
     </body>
 </html>
