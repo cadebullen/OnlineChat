@@ -1,35 +1,10 @@
-body{
-    background-image: url("chatBackground.jpg");
+body {
+    background-image: url("background.jpg");
     background-size: cover;
     color: black;
 }
-h1{
+
+h1 {
     text-align: center;
     text-decoration: overline underline;
-}
-table{
-    margin-left: auto;
-    margin-right: auto;
-    font-family: 'Courier New', Courier, monospace;
-}
-.logged-in{
-    color: greenyellow;
-}
-.container{
-    align-items: center;
-    padding: 10px;
-    width: 750px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    background-color:bisque;
-    font-size: 21px;
-    background: rgba(128,128,128,0.5);
-    border: 1px solid rgb(255,232,57);
-}
-.div{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
 }

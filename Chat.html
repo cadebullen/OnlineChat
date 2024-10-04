@@ -1,99 +1,110 @@
 <html>
-    <head>
-        <title> Chat Application </title>
-        <link rel='stylesheet' href='chat.css'>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        <script> 
-            $(document).ready(function(){
-                $('#message').keyup(() =>{
-                    $.post({
-                        type: "post",
-                        url: "ChatInput.php",
-                        data: {
-                            name: $("#name").val(),
-                            password: $("#password").val(),
-                            message: $("#message").val()
-                        },
-                        dataType: "json"
-                    })
-                    .done(response =>{
+
+<head>
+    <title> Chat Application </title>
+    <link rel='stylesheet' href='chat.css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#message').keyup(() => {
+                $.post({
+                    type: "post",
+                    url: "ChatInput.php",
+                    data: {
+                        name: $("#name").val(),
+                        password: $("#password").val(),
+                        message: $("#message").val()
+                    },
+                    dataType: "json"
+                })
+                    .done(response => {
                         var feedback = $("#feedback");
-                        if (feedback == 1){
+                        if (feedback == 1) {
                             feedback.text('Sent!');
                         }
-                        else{
+                        else {
                             feedback.text('Invalid Credentials! Please try again.');
                         }
                     });
-                });
-
-                setInterval(() =>{
-                    $.ajax({
-                        type: "get",
-                        url: "ChatDisplay.php",
-                        data:{
-                            contactName: $("#contactName").val()
-                        },
-                        dataType: "json"
-                    })
-                    .done(response =>{
-                        var contactMsg = $('#contactMsg');
-                        if (response !== ''){
-                            contactMsg.text(response);
-                        }   
-                    });
-                }, 1000);
             });
-        </script>
-    </head>
-    <body>
-        <h1> - Chat Application - </h1>
-        <table>
-            <th> Contacts Available: </th>
-                <tr>
-                    <td> <span class="logged-in">●</span> Justin </td>
-                </tr>
-                <tr>
-                    <td> <span class="logged-in">●</span> Kayla </td>
-                </tr>
-        </table>
+
+            setInterval(() => {
+                $.ajax({
+                    type: "get",
+                    url: "ChatDisplay.php",
+                    data: {
+                        contactName: $("#contactName").val()
+                    },
+                    dataType: "json"
+                })
+                    .done(response => {
+                        var contactMsg = $('#contactMsg');
+                        if (response !== '') {
+                            contactMsg.text(response);
+                        }
+                    });
+            }, 1000);
+        });
+    </script>
+</head>
+
+<body>
+    <h1> - Chat Application - </h1>
+    <table>
+        <th> Contacts Available: </th>
+        <tr>
+            <td> <span class="logged-in">●</span> Justin </td>
+        </tr>
+        <tr>
+            <td> <span class="logged-in">●</span> Kayla </td>
+        </tr>
+    </table>
+    <br>
+
+    <form class="container">
+        <div class="flex-c1">
+            <p> New Contact: </p>
+            <p> To add a new contact, you need to log in with your own name and password.
+                This will add your inputted name to the 'Contatcs Available' list.
+                <! There needs to be a button that displays this>
+            </p>
+            <label for="newContact"> Enter new Contact: </label>
+            <input type="text" id="newContact" placeholder="Ex: Mandy">
+            <br>
+            <label for="newPassword"> Password:</label>
+            <input type="text" id="newPassword" placeholder="Ex: Abc123$">
+        </div>
+
+        <br>
         <br>
 
-            <form class="container">
-                <div class="flex-c1">
-                    <p> To create a new contact, type here: </p>
-                    <label for="newContact"> Enter new Contact: </label>
-                    <input type="text" id="newContact" placeholder="Ex: Mandy">
-                        <br>
-                    <label for="newPassword"> Password:</label>
-                    <input type="text" id="newPassword" placeholder="Ex: 323" maxlength="3" pattern="\d*"> <small style="color: red; display: inline-block;"> Password has to be a 3 digit number.</small>
-                </div>
+        <div class="flex-c2">
+            <p> Messages:</p>
+            <p> Do you want to send a message? Then log in and type in your message, to see if it was sent, look below.
+                The most recent message will be displayed upon typing in the contact name.
+                <! There needs to be a button that displays this>
+            </p>
+            <label for='name'>Enter your name: </label>
+            <input type='text' id='name' name='name' placeholder='Ex: Jack'>
+            <br>
+            <label for='password'>Enter your password: </label>
+            <input type='password' id='password' name='password' placeholder='Ex: 111' styke="display:inline-block;">
+            <br>
+            <label for="message">Enter your message to be sent here:</label>
+            <textarea name='message' id='message' placeholder='Enter your message here....'></textarea>
+            <span id='feedback'></span>
+        </div>
 
-                <br>
-                <br>
+        <br>
+        <br>
 
-                <div class="flex-c2">
-                    <p> To send a message, type here:</p>
-                    <label for='name'>Enter your name: </label>
-                    <input type='text' id='name' name='name' placeholder='Ex: Jack'>
-                        <br>
-                    <label for='password'>Enter your password: </label>
-                    <input type='password' id='password' name='password' placeholder='Ex: 111' styke="display:inline-block;">
-                        <br>
-                    <label for="message">Enter your message to be sent here:</label>
-                    <textarea name='message' id ='message' placeholder='Enter your message here....'></textarea>
-                        <span id='feedback'></span>
-                </div>
+        <div class="flex-c3">
+            <label for='contactName'> View Messages: </label>
+            <input type='text' id='contactName' name='contactName' placeholder='Ex: Jack'>
+            <br>
+            <textarea id='contactMsg' placeholder="Message logs will appear here..."></textarea>
+        </div>
+    </form>
+</body>
 
-                <br>
-                <br>
-
-                <div class="flex-c3">
-                    <label for='contactName'> To view a message enter a contact name: </label>
-                    <input type='text' id='contactName' name='contactName' placeholder='Ex: Jack'>
-                        <br>
-                    <textarea id='contactMsg' placeholder="Message logs will appear here..."></textarea>
-                </div>
-            </form>
-    </body>
 </html>
